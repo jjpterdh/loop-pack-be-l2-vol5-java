@@ -1,5 +1,6 @@
 package com.loopers.application.brand;
 
+import com.loopers.application.product.ProductCachePort;
 import com.loopers.domain.brand.BrandService;
 import com.loopers.domain.product.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ public class BrandFacade {
 
     private final BrandService brandService;
     private final ProductService productService;
+    private final ProductCachePort productCachePort;
 
     public BrandInfo getBrand(Long brandId) {
         return BrandInfo.from(brandService.getActiveBrand(brandId));
@@ -32,7 +34,9 @@ public class BrandFacade {
     }
 
     public BrandAdminInfo updateBrand(Long brandId, String name) {
-        return BrandAdminInfo.from(brandService.update(brandId, name));
+        BrandAdminInfo result = BrandAdminInfo.from(brandService.update(brandId, name));
+        productCachePort.evictByBrandId(brandId);
+        return result;
     }
 
     @Transactional
@@ -43,5 +47,6 @@ public class BrandFacade {
 //        }
         productService.deleteAllByBrandId(brandId);
         brandService.delete(brandId);
+        productCachePort.evictByBrandId(brandId);
     }
 }

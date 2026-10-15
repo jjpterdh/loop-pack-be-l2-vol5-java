@@ -17,9 +17,9 @@
 | `refactor:` | 리팩토링 (기능 변경 없음) |
 | `docs:` | 문서 수정 |
 | `test:` | 테스트 코드 |
+Claude와 같이 작성했다는 말 제거
 ## 프로젝트 참고
 
-- 이번 주 설계: `docs/week2/design.md` (API 계약, 규칙 R1..R6, 책임 배치)
 - 패키지 의존 규칙: `apps/commerce-api/src/test/java/com/loopers/architecture/ArchitectureTest.java`
 - 검사 명령: `./gradlew :apps:commerce-api:check` (Checkstyle + 전체 테스트)
 - 사용자 식별: `X-USER-ID` 요청 헤더 (로컬 실습용)
