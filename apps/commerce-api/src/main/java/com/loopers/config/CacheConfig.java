@@ -20,6 +20,7 @@ import org.springframework.data.redis.serializer.RedisSerializationContext.Seria
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.time.Duration;
+import java.util.Set;
 
 @EnableCaching
 @Configuration
@@ -50,6 +51,7 @@ public class CacheConfig implements CachingConfigurer {
 
         return RedisCacheManager.builder(connectionFactory)
             .cacheDefaults(config)
+            .initialCacheNames(Set.of("products"))
             .build();
     }
 
