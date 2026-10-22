@@ -44,6 +44,11 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     @Override
+    public List<OrderModel> findByStatus(OrderStatus status) {
+        return orderJpaRepository.findAllByStatus(status);
+    }
+
+    @Override
     public OrderModel save(OrderModel order) {
         return orderJpaRepository.save(order);
     }

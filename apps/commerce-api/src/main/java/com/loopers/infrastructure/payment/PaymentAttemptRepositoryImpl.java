@@ -35,4 +35,9 @@ public class PaymentAttemptRepositoryImpl implements PaymentAttemptRepository {
     public List<PaymentAttemptModel> findPendingBefore(ZonedDateTime sentBefore) {
         return jpaRepository.findAllByStatusAndSentAtBefore(PaymentAttemptStatus.PENDING, sentBefore);
     }
+
+    @Override
+    public List<PaymentAttemptModel> findUnknownBefore(ZonedDateTime sentBefore) {
+        return jpaRepository.findAllByStatusAndSentAtBefore(PaymentAttemptStatus.UNKNOWN, sentBefore);
+    }
 }

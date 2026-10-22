@@ -69,6 +69,11 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
+    @Transactional(readOnly = true)
+    public List<OrderModel> findByStatus(OrderStatus status) {
+        return orderRepository.findByStatus(status);
+    }
+
     @Transactional
     public void expireDraftOrders() {
         List<OrderModel> expired = orderRepository.findExpiredDrafts(ZonedDateTime.now());

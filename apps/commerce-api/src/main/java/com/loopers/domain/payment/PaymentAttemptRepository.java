@@ -12,4 +12,6 @@ public interface PaymentAttemptRepository {
     Optional<PaymentAttemptModel> findByPaymentAttemptKey(String key);
 
     List<PaymentAttemptModel> findPendingBefore(ZonedDateTime sentBefore);
+
+    List<PaymentAttemptModel> findUnknownBefore(ZonedDateTime sentBefore);
 }

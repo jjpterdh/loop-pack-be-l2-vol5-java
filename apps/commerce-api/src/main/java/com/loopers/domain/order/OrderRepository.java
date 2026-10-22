@@ -18,6 +18,8 @@ public interface OrderRepository {
 
     List<OrderModel> findExpiredDrafts(ZonedDateTime now);
 
+    List<OrderModel> findByStatus(OrderStatus status);
+
     OrderModel save(OrderModel order);
 
     void saveAll(List<OrderModel> orders);

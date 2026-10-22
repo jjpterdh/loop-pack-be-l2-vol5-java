@@ -44,6 +44,11 @@ public class PaymentAttemptService {
     }
 
     @Transactional(readOnly = true)
+    public List<PaymentAttemptModel> findUnknownBefore(ZonedDateTime sentBefore) {
+        return paymentAttemptRepository.findUnknownBefore(sentBefore);
+    }
+
+    @Transactional(readOnly = true)
     public PaymentAttemptModel getByOrderId(Long orderId) {
         return paymentAttemptRepository.findByOrderId(orderId)
             .orElseThrow(() -> new CoreException(ErrorType.NOT_FOUND, "[orderId = " + orderId + "] 결제 시도를 찾을 수 없습니다."));

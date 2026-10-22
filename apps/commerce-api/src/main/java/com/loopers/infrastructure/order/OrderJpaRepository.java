@@ -17,6 +17,8 @@ public interface OrderJpaRepository extends JpaRepository<OrderModel, Long> {
 
     List<OrderModel> findAllByStatusAndExpiredAtBefore(OrderStatus status, ZonedDateTime now);
 
+    List<OrderModel> findAllByStatus(OrderStatus status);
+
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("select o from OrderModel o where o.id = :id")
     Optional<OrderModel> findByIdWithLock(@Param("id") Long id);
