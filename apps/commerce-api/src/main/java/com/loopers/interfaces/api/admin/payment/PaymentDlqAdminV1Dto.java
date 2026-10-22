@@ -10,6 +10,9 @@ public class PaymentDlqAdminV1Dto {
         Long orderId,
         String reason,
         PaymentAttemptStatus attemptStatus,
+        boolean resolved,
+        String resolvedAt,
+        String resolveNote,
         String createdAt
     ) {
         public static DlqEntry from(PaymentDlqModel model) {
@@ -18,8 +21,13 @@ public class PaymentDlqAdminV1Dto {
                 model.getOrderId(),
                 model.getReason(),
                 model.getAttemptStatus(),
+                model.isResolved(),
+                model.getResolvedAt() != null ? model.getResolvedAt().toString() : null,
+                model.getResolveNote(),
                 model.getCreatedAt().toString()
             );
         }
     }
+
+    public record ResolveRequest(String note) {}
 }

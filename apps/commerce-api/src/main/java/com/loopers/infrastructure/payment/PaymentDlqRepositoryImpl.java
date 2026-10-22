@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Component
@@ -21,5 +22,15 @@ public class PaymentDlqRepositoryImpl implements PaymentDlqRepository {
     @Override
     public List<PaymentDlqModel> findAll() {
         return jpaRepository.findAll();
+    }
+
+    @Override
+    public List<PaymentDlqModel> findAllByResolved(boolean resolved) {
+        return jpaRepository.findAllByResolved(resolved);
+    }
+
+    @Override
+    public Optional<PaymentDlqModel> findById(Long id) {
+        return jpaRepository.findById(id);
     }
 }
